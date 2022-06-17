@@ -18,7 +18,7 @@ func init() {
 
 func main() {
 	e := gin.Default()
-	e.GET("/", func(c *gin.Context) {
+	e.GET("/home", func(c *gin.Context) {
 		c.String(200, "Gin Web App on Cloudflare @%v", time.Now().UnixMilli())
 	})
 	fmt.Println("Gin Web App running @", addr)
