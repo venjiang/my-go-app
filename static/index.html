@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>go web app</title>
+    <script src="wasm_exec.js"></script>
+    <script>
+        const go = new Go();
+        WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
+            go.run(result.instance);
+        });
+    </script>
+</head>
+<body>
+<div>
+    <h2>hash</h2>
+    <label for="inputField">Enter value</label>
+    <input id="inputField" name="Hash" type="text">
+    <div id="outputHash"></div>
+</div>
+<div>
+    <h2>hello</h2>
+    <label>Message</label>
+    <input id="msg" name="msg" type="text">
+    <button id="btn" type="button">Click Me!</button>
+    <div id="result"></div>
+</div>
+<script>
+    // hash
+    var inputField = document.querySelector('#inputField')
+    var outputHash = document.querySelector('#outputHash')
+    inputField.addEventListener('keyup', function() {
+        outputHash.innerHTML = hash(inputField.value) 
+    });
+    // hello
+    var msg = document.querySelector('#msg')
+    var btn = document.querySelector('#btn')
+    btn.addEventListener('click', function() {
+        document.querySelector('#result').innerHTML=hello(msg.value)
+    });
+</script>
+</body>
+</html>
+
